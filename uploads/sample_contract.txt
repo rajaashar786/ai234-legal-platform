@@ -1,0 +1,46 @@
+SERVICE AGREEMENT
+
+This Service Agreement ("Agreement") is entered into as of January 15, 2026, by and between:
+
+TechNova Solutions Pvt Ltd, a company incorporated under the laws of Pakistan, having its registered office at Blue Area, Islamabad ("Service Provider"),
+
+AND
+
+Meridian Retail Group Inc., a corporation with its principal place of business at 500 Commerce Street, Chicago, Illinois, USA ("Client").
+
+1. SCOPE OF SERVICES
+The Service Provider agrees to design, develop, and maintain a cloud-based inventory management platform for the Client, including software development, testing, deployment, and ongoing technical support, as further described in Exhibit A.
+
+2. TERM
+This Agreement shall commence on February 1, 2026 and shall continue for an initial period of twelve (12) months, unless terminated earlier in accordance with the provisions of this Agreement. The Agreement shall automatically renew for successive twelve (12) month periods unless either party provides written notice of non-renewal at least sixty (60) days prior to the end of the then-current term.
+
+3. PAYMENT TERMS
+The Client shall pay the Service Provider a total fee of USD 180,000, payable in equal monthly installments of USD 15,000, due on the first business day of each month. Any invoice not paid within thirty (30) days of the due date shall accrue interest at a rate of 1.5% per month. Failure to pay any installment within forty-five (45) days shall constitute a material breach of this Agreement.
+
+4. CONFIDENTIALITY
+Each party agrees to hold in strict confidence all non-public, proprietary, or confidential information disclosed by the other party in connection with this Agreement, including but not limited to business plans, technical specifications, source code, and customer data. This obligation of confidentiality shall survive termination of this Agreement for a period of five (5) years.
+
+5. TERMINATION
+Either party may terminate this Agreement for convenience upon ninety (90) days' prior written notice to the other party. Either party may terminate this Agreement immediately upon written notice if the other party materially breaches any provision of this Agreement and fails to cure such breach within thirty (30) days of receiving written notice thereof. Upon termination, the Client shall pay the Service Provider for all services rendered up to the effective date of termination.
+
+6. LIABILITY
+The Service Provider's total liability arising out of or related to this Agreement shall not exceed the total fees paid by the Client in the twelve (12) months preceding the claim. Neither party shall be liable for any indirect, incidental, special, or consequential damages, including loss of profits or business interruption, even if advised of the possibility of such damages.
+
+7. FORCE MAJEURE
+Neither party shall be liable for any failure or delay in performance under this Agreement to the extent such failure or delay is caused by circumstances beyond its reasonable control, including but not limited to natural disasters, acts of government, war, or widespread internet or power outages.
+
+8. GOVERNING LAW AND ARBITRATION
+This Agreement shall be governed by and construed in accordance with the laws of the State of Illinois, United States, without regard to its conflict of laws principles. Any dispute arising out of or relating to this Agreement shall be resolved through binding arbitration administered by the International Chamber of Commerce, with the seat of arbitration in Chicago, Illinois.
+
+9. NOTICE PERIODS AND OBLIGATIONS
+The Service Provider shall submit a monthly progress report to the Client no later than the fifth (5th) business day of each month. The Client shall provide feedback or approval on each deliverable within ten (10) business days of receipt. Failure to respond within this period shall be deemed approval.
+
+10. RENEWAL AND EXPIRY
+This Agreement is set to expire on January 31, 2027, unless renewed as described in Section 2. The Client must provide notice of intent to renew or terminate no later than December 1, 2026.
+
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.
+
+TechNova Solutions Pvt Ltd                    Meridian Retail Group Inc.
+By: _______________________                   By: _______________________
+Name: Ahmed Raza                               Name: Sarah Whitman
+Title: Chief Executive Officer                 Title: VP of Operations
