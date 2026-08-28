@@ -1,4 +1,8 @@
+
+
 # Legal Intelligence Platform (AI-234)
+
+**Live Demo:** [ai234-legal-platform-hfgsnksfindw4uqltfhayb.streamlit.app](https://ai234-legal-platform-hfgsnksfindw4uqltfhayb.streamlit.app) *(live only while the developer's local backend + tunnel are running — see [Deployment](#deployment))*
 
 An AI-powered platform that lets users upload legal documents (contracts, NDAs, service agreements), analyze clause risks, and ask natural-language questions about their content. The system retrieves relevant clauses and generates accurate, source-attributed answers using Retrieval-Augmented Generation (RAG).
 
