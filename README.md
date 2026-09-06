@@ -1,18 +1,22 @@
+
+
 # Legal Intelligence Platform (AI-234)
+
+**Live Demo:** [ai234-legal-platform-hfgsnksfindw4uqltfhayb.streamlit.app](https://ai234-legal-platform-hfgsnksfindw4uqltfhayb.streamlit.app) *(live only while the developer's local backend + tunnel are running — see [Deployment](#deployment))*
 
 An AI-powered platform that lets users upload legal documents (contracts, NDAs, service agreements), analyze clause risks, and ask natural-language questions about their content. The system retrieves relevant clauses and generates accurate, source-attributed answers using Retrieval-Augmented Generation (RAG).
 
 
 ## Features Implemented
 
-**Document Processing & Storage** — Accepts PDF, DOCX, and TXT files, splits them into semantic chunks, and stores metadata in PostgreSQL.
-**Vector Embeddings & Semantic Search** — Uses HuggingFace sentence embeddings (`all-mpnet-base-v2`) with a FAISS vector index for fast similarity search.
-**AI Legal Copilot** — A RAG pipeline that answers natural-language questions about uploaded documents with exact source attribution.
-**Clause Extraction & Risk Breakdown** — Analyzes contract clauses (Payment, Termination, Liability, etc.) and tags risk levels (High, Medium, Low, Unrated).
-**Executive Dashboard UI** — Interactive Streamlit frontend to view uploaded documents, explore risk breakdowns, and chat with the AI Copilot.
- **Knowledge Graph** — Documents and clauses are linked in Neo4j so relationships between them can be queried.
- **Answer Caching** — Repeated questions are served from Redis instead of re-running the RAG pipeline.
- **Cloud-Hosted Infrastructure** — PostgreSQL, Neo4j, and Redis run as managed cloud services; no local containers or Docker required.
+- **Document Processing & Storage** — Accepts PDF, DOCX, and TXT files, splits them into semantic chunks, and stores metadata in PostgreSQL.
+- **Vector Embeddings & Semantic Search** — Uses HuggingFace sentence embeddings (`all-mpnet-base-v2`) with a FAISS vector index for fast similarity search.
+- **AI Legal Copilot** — A RAG pipeline that answers natural-language questions about uploaded documents with exact source attribution.
+- **Clause Extraction & Risk Breakdown** — Analyzes contract clauses (Payment, Termination, Liability, etc.) and tags risk levels (High, Medium, Low, Unrated).
+- **Executive Dashboard UI** — Interactive Streamlit frontend to view uploaded documents, explore risk breakdowns, and chat with the AI Copilot.
+- **Knowledge Graph** — Documents and clauses are linked in Neo4j so relationships between them can be queried.
+- **Answer Caching** — Repeated questions are served from Redis instead of re-running the RAG pipeline.
+- **Cloud-Hosted Infrastructure** — PostgreSQL, Neo4j, and Redis run as managed cloud services; no local containers or Docker required.
 
 
 ## Tech Stack
@@ -32,7 +36,7 @@ An AI-powered platform that lets users upload legal documents (contracts, NDAs, 
 
 ## Architecture
 
-```
+
                   ┌──────────────────────┐
                   │  Streamlit Dashboard  │
                   └──────────┬───────────┘
@@ -61,13 +65,13 @@ Ask Question ──────────┤                        ┌──�
                └───────┬───────┘
                        ▼
                Answer + Sources
-```
+
 
 All three data stores (PostgreSQL, Neo4j, Redis) are managed cloud services — nothing runs locally except the FastAPI app and the Streamlit dashboard.
 
 ## Project Structure
 
-```
+
 ai234-legal-platform/
 ├── app/
 │   ├── main.py                 # FastAPI backend entry point
@@ -90,9 +94,8 @@ ai234-legal-platform/
 ├── Procfile                     # Deployment configuration
 ├── requirements.txt             # Python dependencies
 └── .env                         # Environment variables (not committed)
-```
 
----
+
 
 ## Setup & Running Locally
 
@@ -102,30 +105,29 @@ Python 3.12, an OpenRouter API key, and accounts/connection strings for a cloud 
 
 ### 1. Clone & Setup Virtual Environment
 
-```powershell
+powershell
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-```
 
 ### 2. Configure `.env` File
 
 Point each variable at your cloud-hosted instance's connection details:
 
-```
+
 DATABASE_URL=postgresql://<user>:<password>@<neon-host>/<db>?sslmode=require
 NEO4J_URI=neo4j+s://<your-aura-instance>.databases.neo4j.io
 NEO4J_USER=neo4j
 NEO4J_PASSWORD=<your-aura-password>
 REDIS_URL=<your-upstash-redis-url>
 OPENROUTER_API_KEY=your_openrouter_api_key
-```
+
 
 ### 3. Run FastAPI Backend
 
-```powershell
+powershell
 uvicorn app.main:app --reload
-```
+
 
 Since PostgreSQL, Neo4j, and Redis are all cloud-hosted, there's no local database step to run first.
 
@@ -155,27 +157,27 @@ BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
 
 ### Steps to deploy / re-deploy
 
-**Start the backend locally:**
-   ```powershell
+1. **Start the backend locally:**
+```powershell
    venv\Scripts\activate
    uvicorn app.main:app --reload
-   ```
+```
 
- **Start a Cloudflare Tunnel** pointing at the local backend:
-   ```powershell
+2. **Start a Cloudflare Tunnel** pointing at the local backend:
+```powershell
    & "C:\Program Files (x86)\cloudflared\cloudflared.exe" tunnel --url http://localhost:8000
-   ```
+```
    This prints a public URL like `https://<random-words>.trycloudflare.com`. Copy it.
 
-**Set the Streamlit secret.** In the Streamlit Cloud app settings → **Secrets**, set:
-   ```toml
+3. **Set the Streamlit secret.** In the Streamlit Cloud app settings → **Secrets**, set:
+```toml
    BACKEND_URL = "https://<random-words>.trycloudflare.com"
-   ```
+```
    (No trailing path — `dashboard.py` appends `/api/v1` itself.)
 
- **Reboot the app** from the Streamlit Cloud dashboard so it picks up the new secret.
+4. **Reboot the app** from the Streamlit Cloud dashboard so it picks up the new secret.
 
-###  Known limitation
+### ⚠️ Known limitation
 
 This setup only works while **both** the local `uvicorn` process and the `cloudflared` tunnel keep running on the developer's machine. If the laptop sleeps, loses network, or either terminal is closed, the tunnel URL dies and the deployed dashboard will fail to reach the backend. Since the databases are already cloud-hosted, the remaining step for a fully "always-on" deployment is moving the FastAPI backend itself to a hosted environment (e.g. Render, Railway, Fly.io) instead of tunneling from a local machine.
 
@@ -222,13 +224,13 @@ POST /api/v1/documents/ask?question=What are the payment terms in this agreement
 
 ## Future Roadmap
 
- **Compliance Policy Engine** — Automated compliance scoring against corporate internal policies.
- **Obligation Deadline Tracker** — Automated reminder triggers for contract renewals and expiration dates.
- **Always-on Backend Hosting** — Move FastAPI off the local-machine + tunnel setup onto a hosted platform (Render/Railway/Fly.io) so the deployment doesn't depend on a laptop staying on.
+- **Compliance Policy Engine** — Automated compliance scoring against corporate internal policies.
+- **Obligation Deadline Tracker** — Automated reminder triggers for contract renewals and expiration dates.
+- **Always-on Backend Hosting** — Move FastAPI off the local-machine + tunnel setup onto a hosted platform (Render/Railway/Fly.io) so the deployment doesn't depend on a laptop staying on.
 
 ---
 
 ## Notes
 
- The vector index (FAISS) is cumulative across uploads within a session — all uploaded documents are searchable together via the Ask endpoint.
- PostgreSQL, Neo4j, and Redis are managed cloud services — no Docker or local database setup is needed to run the project.
+- The vector index (FAISS) is cumulative across uploads within a session — all uploaded documents are searchable together via the Ask endpoint.
+- PostgreSQL, Neo4j, and Redis are managed cloud services — no Docker or local database setup is needed to run the project.
